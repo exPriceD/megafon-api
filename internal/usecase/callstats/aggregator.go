@@ -38,12 +38,12 @@ func Aggregate(calls []entities.Call) Summary {
 			add(sum[BucketMissed], c.Client)
 		}
 
-		if entities.CallType(c.Status) == entities.CallIn && c.Duration <= 5 {
+		if entities.CallType(c.Status) == entities.CallIn && c.Duration <= 5 && c.Duration > 0 {
 			add(sum[BucketNoCallBack], c.Client)
 			continue
 		}
 
-		if entities.CallType(c.Status) == entities.CallOut && c.Duration <= 5 {
+		if entities.CallType(c.Status) == entities.CallOut && c.Duration <= 5 && c.Duration > 0 {
 			add(sum[BucketWeCalledBackFail], c.Client)
 			continue
 		}
